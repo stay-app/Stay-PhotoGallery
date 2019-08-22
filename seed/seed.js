@@ -9,20 +9,24 @@ let getRandomInt = (min, max) => {
 const imageUrls = [];
 const strChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
 
-// generate arr of random str (for now) to mimic image urls
+// for now, generate random string to mimic image urls
 for (let i = 0; i < 100; i++) {
-  imageUrls[i] = Math.floor(Math.random(0, 1) * 100) +
+  imageUrls[i] = Math.floor(Math.random(0, 1) * 100) + '\n'
                  strChoices[getRandomInt(0, strChoices.length)];
 }
 
-let insertQueryObj = {};
+let insertQueries = [];
 
-// for loop for x insert statements (n photos for each listingId)
-for (let listingId = 1; listingId < 101; listingId++) {
+for (let listing_id = 1; listing_id < 101; listing_id++) {
+  let insertQuery = {};
   let numPhotos = getRandomInt(5, 25);
-  for (let seqId = 1; seqId < numPhotos; seqId++) {
-    let photoUrl = getRandomInt(0, imageUrls.length);
+  for (let sequence_id = 1; sequence_id < numPhotos; sequence_id++) {
+    let image_url = getRandomInt(0, imageUrls.length);
     let caption = loremHipsum({ sentenceLowerBound: 5, sentenceUpperBound: 12 });
-    console.log(listingId, seqId, photoUrl, caption);
+
+    insertQuery = { listing_id, sequence_id, image_url, caption };
+    insertQueries.push(insertQuery);
   }
 }
+
+console.log(insertQueries);
