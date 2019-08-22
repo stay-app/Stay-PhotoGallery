@@ -6,8 +6,6 @@ class App extends React.Component {
     super(props);
   }
 
-  helloWorld() {}
-
   render() {
     return <div>hello world</div>
   }
