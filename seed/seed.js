@@ -1,4 +1,11 @@
 const loremHipsum = require('lorem-hipsum');
+const pg = require('pg');
+const os = require('os');
+const pgp = require('pg-promise')();
+
+const user = os.userInfo().username;
+const cn = `postgres://${user}:@localhost:5432/photogallery`;
+const db = pgp(cn);
 
 let getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -29,4 +36,9 @@ for (let listing_id = 1; listing_id < 101; listing_id++) {
   }
 }
 
-console.log(insertQueries);
+const colSet = new pgp.helpers.ColumnSet(['listing_id', 'sequence_id', 'image_url', 'caption'], {table: 'images'});
+const query = pgp.helpers.insert(insertQueries, colSet);
+
+db.none(query)
+  .then(success => console.log("Inserting seed data..."))
+  .catch(err => console.log(err));
