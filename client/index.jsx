@@ -7,7 +7,7 @@ class App extends React.Component {
   }
 
   helloWorld() {
-    return "Hello world!!!";
+    return "Hello world!";
   }
 
   render() {
