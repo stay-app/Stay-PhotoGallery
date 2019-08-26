@@ -11,11 +11,13 @@
   "scripts": {
     "seed": "node ./seed/schema.js && node ./seed/seed.js",
     "start": "nodemon ./server/index.js",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "test": "jest __tests__/component.test.js --watchAll"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "lorem-hipsum": "^0.1.7",
     "pg": "^7.12.1",
     "pg-promise": "^9.1.0",
@@ -28,6 +30,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
     "eslint": "^6.2.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",

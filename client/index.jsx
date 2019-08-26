@@ -6,9 +6,15 @@ class App extends React.Component {
     super(props);
   }
 
+  helloWorld() {
+    return "Hello world!";
+  }
+
   render() {
     return <div>hello world</div>
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+export default App;
