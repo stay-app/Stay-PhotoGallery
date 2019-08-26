@@ -6,13 +6,13 @@ const pool = new Pool({
   database: 'photogallery',
   password: null,
   port: 5432,
-})
+});
 
 const getImagesForListingId = (listingId, cb) => {
   pool.query(`SELECT * from images where listing_id=${listingId}`, (err, res) => {
     if (err) cb(err);
     else cb(null, res);
-    pool.end();
+    // pool.end();
   });
 };
 
