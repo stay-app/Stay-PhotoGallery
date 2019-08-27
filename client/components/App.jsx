@@ -1,6 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import Image from './Image.jsx';
+
+const StyledImage = styled.div`
+border: 5px solid red;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -18,9 +23,10 @@ class App extends React.Component {
   }
 
   render() {
-    // return <div>{JSON.stringify(this.state)}</div>
     return (
-      <Image listingData={ this.state.listingData } />
+      <StyledImage>
+        <Image listingData={ this.state.listingData } />
+      </StyledImage>
     );
   }
 }
