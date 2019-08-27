@@ -28,6 +28,7 @@ class App extends React.Component {
     this.state = {
       listingData: [],
       showModal: false,
+      clickedImageUrl: '',
     };
   }
 
@@ -40,20 +41,24 @@ class App extends React.Component {
   // toggleModal() {
   //   this.setState({ showModal: !this.state.showModal, });
   // }
-  handleOpenModal() {this.setState({showModal: true})}
+  handleOpenModal(clickedUrl) {
+    this.setState({ showModal: true, clickedImageUrl: clickedUrl });
+  }
 
   handleCloseModal() {this.setState({showModal: false})}
 
   render() {
     return (
       <Wrapper>
-        <Image listingData={ this.state.listingData } />
-        <Button onClick={this.handleOpenModal.bind(this)}> Show Modal?</Button>
+        <Image
+          listingData={this.state.listingData}
+          handleOpenModal={this.handleOpenModal.bind(this)}
+        />
         {this.state.showModal ? (
           <Modal
             // open={this.state.showModal}
             handleCloseModal={this.handleCloseModal.bind(this)}>
-            Hello from the modal
+            <img src={this.state.clickedImageUrl} alt='lol'/>
           </Modal>
         ) : null }
       </Wrapper>

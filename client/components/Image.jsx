@@ -33,11 +33,16 @@ const RightHalf = styled.div`
 class Image extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      clickedImageUrl: '',
+    }
   }
 
   handleImageClick(e) {
-    console.log(e.target.alt)
-    // console.log(this.props.listingData.filter((v) => v.listingid === e.target.id)[0]);
+    const clickedUrl = this.props.listingData.filter((v) => v.sequence_id === Number(e.target.id))[0].image_url;
+    this.setState({ clickedImageUrl: clickedUrl });
+    this.props.handleOpenModal(clickedUrl);
   }
 
   handleImageHover() {
@@ -52,8 +57,14 @@ class Image extends React.Component {
             id={this.props.listingData[0].sequence_id}
             imgObj={this.props.listingData[0].image_url}
             onClick={this.handleImageClick.bind(this)}
+            onmouseover=""
+            style={{cursor: "pointer"}}
           />
-          <RightHalf onClick={this.handleImageClick.bind(this)}>
+          <RightHalf
+            onClick={this.handleImageClick.bind(this)}
+            onmouseover=""
+            style={{cursor: "pointer"}}
+          >
             <img
               id={this.props.listingData[1].sequence_id}
               src={this.props.listingData[1].image_url}

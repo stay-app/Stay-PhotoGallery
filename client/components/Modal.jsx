@@ -56,6 +56,7 @@ class Modal extends React.Component {
           }}
         >
           {this.props.children}
+          <hr/>
           <button onClick={this.props.handleCloseModal}>Close</button>
         </div>
       </div>,
