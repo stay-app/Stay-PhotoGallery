@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Image from './Image.jsx';
 
-const StyledImage = styled.div`
-border: 5px solid red;
+const Wrapper = styled.div`
+  border: 1px solid green;
+  float:left;
 `;
 
 class App extends React.Component {
@@ -24,9 +25,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <StyledImage>
+      <Wrapper>
         <Image listingData={ this.state.listingData } />
-      </StyledImage>
+      </Wrapper>
     );
   }
 }
