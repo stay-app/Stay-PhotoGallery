@@ -4,7 +4,7 @@ import axios from 'axios';
 import Image from './Image.jsx';
 
 const Wrapper = styled.div`
-  border: 1px solid green;
+  border: 1px solid black;
   float:left;
 `;
 

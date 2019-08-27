@@ -4,23 +4,30 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display:grid;
   grid-template-columns: 50% 50%;
+  overflow: auto;
+  max-height: 442px;
 `;
 
 const LeftHalf = styled.div`
   border: 1px solid red;
   float: left;
   background-image: url('${(props) => props.imgObj}');
+  background-repeat: no-repeat;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-width: 50vw;
 `;
 
 const RightHalf = styled.div`
-  border: 1px solid red;
+  border: 1px solid blue;
   float: right;
-`;
-
-const Quadrant = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
+  overflow: auto;
+  width: 100%;
+  height: auto;
 `;
 
 class Image extends React.Component {
@@ -28,8 +35,9 @@ class Image extends React.Component {
     super(props);
   }
 
-  handleImageClick() {
-    // do something
+  handleImageClick(e) {
+    console.log(e.target.alt)
+    // console.log(this.props.listingData.filter((v) => v.listingid === e.target.id)[0]);
   }
 
   handleImageHover() {
@@ -40,16 +48,32 @@ class Image extends React.Component {
     if (this.props.listingData.length > 0) {
       return (
         <Wrapper>
-          <LeftHalf imgObj={this.props.listingData[0].image_url}>
-            {/* <img src={this.props.listingData[0].image_url} alt="" /> */}
-          </LeftHalf>
-          <RightHalf>
-            <Quadrant>
-              <img src={this.props.listingData[1].image_url} alt="" />
-              <img src={this.props.listingData[2].image_url} alt="" />
-              <img src={this.props.listingData[3].image_url} alt="" />
-              <img src={this.props.listingData[4].image_url} alt="" />
-            </Quadrant>
+          <LeftHalf
+            id={this.props.listingData[0].sequence_id}
+            imgObj={this.props.listingData[0].image_url}
+            onClick={this.handleImageClick.bind(this)}
+          />
+          <RightHalf onClick={this.handleImageClick.bind(this)}>
+            <img
+              id={this.props.listingData[1].sequence_id}
+              src={this.props.listingData[1].image_url}
+              alt={this.props.listingData[1].caption}
+            />
+            <img
+              id={this.props.listingData[2].sequence_id}
+              src={this.props.listingData[2].image_url}
+              alt={this.props.listingData[2].caption}
+            />
+            <img
+              id={this.props.listingData[3].sequence_id}
+              src={this.props.listingData[3].image_url}
+              alt={this.props.listingData[3].caption}
+            />
+            <img
+              id={this.props.listingData[4].sequence_id}
+              src={this.props.listingData[4].image_url}
+              alt={this.props.listingData[4].caption}
+            />
           </RightHalf>
         </Wrapper>
       )
