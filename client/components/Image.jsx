@@ -44,6 +44,7 @@ class Image extends React.Component {
     const clickedImageSeq = clickedImageObj.sequence_id;
     const clickedImageUrl = clickedImageObj.image_url;
     this.setState({ clickedImageUrl: clickedImageUrl });
+    this.props.changeClickedObj(clickedImageObj);
     this.props.handleOpenModal(clickedImageSeq);
   }
 

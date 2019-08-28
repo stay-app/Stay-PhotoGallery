@@ -28,7 +28,7 @@ class App extends React.Component {
     this.state = {
       listingData: [],
       showModal: false,
-      clickedImageUrl: '',
+      clickedImageObj: {},
     };
   }
 
@@ -38,16 +38,17 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-  // toggleModal() {
-  //   this.setState({ showModal: !this.state.showModal, });
-  // }
   handleOpenModal(clickedImageSeqId) {
-    const clickedImageUrl = this.state.listingData.filter((v) => v.sequence_id === clickedImageSeqId )[0].image_url;
-    this.setState({ showModal: true, clickedImageUrl });
+    const clickedImageObj = this.state.listingData.filter((v) => v.sequence_id === clickedImageSeqId)[0];
+    this.setState({ showModal: true, clickedImageObj });
   }
 
   handleCloseModal() {
     this.setState({ showModal: false });
+  }
+
+  changeClickedObj(clickedImageObj) {
+    this.setState({ clickedImageObj });
   }
 
   render() {
@@ -56,14 +57,19 @@ class App extends React.Component {
         <Image
           listingData={this.state.listingData}
           handleOpenModal={this.handleOpenModal.bind(this)}
+          changeClickedObj={this.changeClickedObj.bind(this)}
         />
         {this.state.showModal ? (
           <Modal
             // open={this.state.showModal}
-            handleCloseModal={this.handleCloseModal.bind(this)}>
+            listingData={this.state.listingData}
+            clickedImageObj={this.state.clickedImageObj}
+            handleCloseModal={this.handleCloseModal.bind(this)}
+            changeClickedObj={this.changeClickedObj.bind(this)}
+          >
             <img
-              src={this.state.clickedImageUrl}
-              alt='lol'
+              src={this.state.clickedImageObj.image_url}
+              alt={this.state.clickedImageObj.sequence_id}
               style={{ width: '65vh', height: 'auto', borderRadius: '16px' }}
             />
           </Modal>
