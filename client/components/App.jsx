@@ -60,7 +60,11 @@ class App extends React.Component {
           <Modal
             // open={this.state.showModal}
             handleCloseModal={this.handleCloseModal.bind(this)}>
-            <img src={this.state.clickedImageUrl} alt='lol'/>
+            <img
+              src={this.state.clickedImageUrl}
+              alt='lol'
+              style={{ width: '65vh', height: 'auto', borderRadius: '16px' }}
+            />
           </Modal>
         ) : null }
       </Wrapper>
