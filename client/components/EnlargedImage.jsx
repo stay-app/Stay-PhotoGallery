@@ -3,10 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MainImage = styled.div`
-  height: 788px;
-  width: 525px;
-  padding: 40px;
-  verticalAlign: middle;
+  /* height: 788px; */
+  /* width: 525px; */
+  /* padding: 40px; */
+  /* verticalAlign: middle; */
 `;
 
 class EnlargedImage extends React.Component {
