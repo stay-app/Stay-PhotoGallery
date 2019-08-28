@@ -45,7 +45,9 @@ class App extends React.Component {
     this.setState({ showModal: true, clickedImageUrl: clickedUrl });
   }
 
-  handleCloseModal() {this.setState({showModal: false})}
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
 
   render() {
     return (
