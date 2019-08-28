@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 // get listing images for a given listing id
 app.get('/api/images/:listingid', (req, res) => {
-  db.getImagesForListingId(1, (err, queryResults) => {
+  db.getImagesForListingId(req.params.listingid, (err, queryResults) => {
     if (err) console.log(err);
     else res.send(queryResults.rows);
   });
