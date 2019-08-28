@@ -6,19 +6,7 @@ import Modal from './Modal.jsx';
 
 const Wrapper = styled.div`
   border: 1px solid black;
-  float:left;
-`;
-
-// const Modal = styled.div`
-//   display: none; /* hidden by default */
-//   position: fixed;
-//   z-index: 1; /* sits on top */
-//   width: 100%;
-//   height: 100%;
-//   background-color: white;
-// `;
-
-const Button = styled.button`
+  float: left;
 `;
 
 class App extends React.Component {
@@ -41,11 +29,9 @@ class App extends React.Component {
   // toggleModal() {
   //   this.setState({ showModal: !this.state.showModal, });
   // }
-  handleOpenModal(clickedUrl) {
-    this.setState({ showModal: true, clickedImageUrl: clickedUrl });
-  }
+  handleOpenModal(clickedUrl) { this.setState({ showModal: true, clickedImageUrl: clickedUrl }) }
 
-  handleCloseModal() {this.setState({showModal: false})}
+  handleCloseModal() { this.setState({showModal: false}) }
 
   render() {
     return (
@@ -56,9 +42,12 @@ class App extends React.Component {
         />
         {this.state.showModal ? (
           <Modal
-            // open={this.state.showModal}
             handleCloseModal={this.handleCloseModal.bind(this)}>
-            <img src={this.state.clickedImageUrl} alt='lol'/>
+            <img
+              src={this.state.clickedImageUrl}
+              alt="test"
+              style={{ width: 'auto', height: '65vh', borderRadius: '16px' }}
+            />
           </Modal>
         ) : null }
       </Wrapper>

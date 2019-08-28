@@ -1,7 +1,7 @@
 {
   "name": "",
   "version": "",
-  "description": "",
+  "description": "Stay - Listing Photo Gallery",
   "private": true,
   "author": "",
   "license": "",
@@ -12,7 +12,7 @@
     "seed": "node ./seed/schema.js && node ./seed/seed.js",
     "start": "nodemon ./server/index.js",
     "build": "webpack --watch",
-    "test": "jest __tests__/component.test.js --watchAll"
+    "test": "jest __tests__/*.js --watchAll --coverage"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -31,9 +31,11 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
     "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.2.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
@@ -44,7 +46,11 @@
     "faker": "^4.1.0",
     "jest": "^24.9.0",
     "morgan": "^1.9.1",
+    "react-test-renderer": "^16.9.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"
+  },
+  "jest": {
+    "verbose": true
   }
 }
