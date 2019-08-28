@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import styled from 'styled-components';
-
-// const ModalContent = styled.div`
-//   margin: 15% auto; /* 15% from top + centered */
-//   padding: 20px;
-//   border: 1px solid red;
-//   width: 80%;
-// `;
+import styled from 'styled-components';
+import EnlargedImage from './EnlargedImage.jsx';
+import Carousel from './Carousel.jsx';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -42,21 +37,19 @@ class Modal extends React.Component {
         onClick={this.props.handleCloseModal}
       >
         <div
+          className="modal-container"
           style={{
-            padding: 20,
             background: '#fff',
-            borderRadius: '2px',
             display: 'inline-block',
-            minHeight: '300px',
-            margin: '1rem',
-            minWidth: '300px',
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
             boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
             justifySelf: 'center',
           }}
         >
-          {this.props.children}
-          <hr/>
-          <button onClick={this.props.handleCloseModal}>Close</button>
+            <EnlargedImage>{this.props.children}</EnlargedImage>
+            <Carousel/>
         </div>
       </div>,
       this.el,
