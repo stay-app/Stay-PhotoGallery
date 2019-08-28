@@ -41,8 +41,9 @@ class App extends React.Component {
   // toggleModal() {
   //   this.setState({ showModal: !this.state.showModal, });
   // }
-  handleOpenModal(clickedUrl) {
-    this.setState({ showModal: true, clickedImageUrl: clickedUrl });
+  handleOpenModal(clickedImageSeqId) {
+    const clickedImageUrl = this.state.listingData.filter((v) => v.sequence_id === clickedImageSeqId )[0].image_url;
+    this.setState({ showModal: true, clickedImageUrl });
   }
 
   handleCloseModal() {

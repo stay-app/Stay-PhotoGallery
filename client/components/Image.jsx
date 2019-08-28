@@ -40,9 +40,11 @@ class Image extends React.Component {
   }
 
   handleImageClick(e) {
-    const clickedUrl = this.props.listingData.filter((v) => v.sequence_id === Number(e.target.id))[0].image_url;
-    this.setState({ clickedImageUrl: clickedUrl });
-    this.props.handleOpenModal(clickedUrl);
+    const clickedImageObj = this.props.listingData.filter((v) => v.sequence_id === Number(e.target.id))[0];
+    const clickedImageSeq = clickedImageObj.sequence_id;
+    const clickedImageUrl = clickedImageObj.image_url;
+    this.setState({ clickedImageUrl: clickedImageUrl });
+    this.props.handleOpenModal(clickedImageSeq);
   }
 
   handleImageHover() {
