@@ -1,34 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  display:grid;
-  grid-template-columns: 50% 50%;
-  overflow: auto;
-  max-height: 442px;
-`;
-
-const LeftHalf = styled.div`
-  border: 1px solid red;
-  float: left;
-  background-image: url('${(props) => props.imgObj}');
-  background-repeat: no-repeat;
-  object-fit: cover;
-  width: 100%;
-  height: auto;
-  max-width: 50vw;
-`;
-
-const RightHalf = styled.div`
-  border: 1px solid blue;
-  float: right;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-  overflow: auto;
-  width: 100%;
-  height: auto;
-`;
+import {
+  Wrapper,
+  LeftHalf,
+  RightHalf,
+} from './image-styles.js';
 
 class Image extends React.Component {
   constructor(props) {
@@ -58,6 +33,7 @@ class Image extends React.Component {
         <Wrapper>
           <LeftHalf
             id={this.props.listingData[0].sequence_id}
+            className={`seq-${this.props.listingData[0].sequence_id}`}
             imgObj={this.props.listingData[0].image_url}
             onClick={this.handleImageClick.bind(this)}
             onmouseover=""

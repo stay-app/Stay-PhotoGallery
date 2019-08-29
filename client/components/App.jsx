@@ -35,12 +35,13 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/api/images/1')
       .then(data => this.setState({ listingData: data.data }))
-      .catch(err => console.log(err));
+      // .catch(err => console.log(err));
   }
 
   handleOpenModal(clickedImageSeqId) {
     const clickedImageObj = this.state.listingData.filter((v) => v.sequence_id === clickedImageSeqId)[0];
-    this.setState({ showModal: true, clickedImageObj });
+    this.changeClickedObj(clickedImageObj);
+    this.setState({ showModal: true });
   }
 
   handleCloseModal() {
