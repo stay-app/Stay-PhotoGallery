@@ -4,6 +4,16 @@ import styled from 'styled-components';
 
 const ImageCarouselDiv = styled.div`
   width: '100%';
+  float: right;
+`;
+
+const CarouselContainerDiv = styled.div`
+  display: block;
+  margin: 0;
+`;
+
+const CarouselImageButtons = styled.button`
+  display: block;
 `;
 
 class Carousel extends React.Component {
@@ -19,33 +29,33 @@ class Carousel extends React.Component {
   render() {
     if (this.props.clickedImageObj) {
       return (
-        <div>
-          <p id='img-caption'>{this.props.clickedImageObj.caption}</p>
-          <p id='img-totals'>{this.props.clickedImageObj.sequence_id}/{this.props.listingData.length}</p>
+        <CarouselContainerDiv>
+          <ul className="carousel-list">
           {this.props.listingData.map((img, idx) => {
             return (
               <ImageCarouselDiv className="carousel" key={idx}>
-                <ul className="carousel-list">
-                  <li style={{  listStyleType: 'none', borderRadius: '4px' }}>
-                    <button
-                      onClick={this.handleCarouselClick.bind(this)}
-                      style={{ width: '64px', height: '64px', border: 'none', backgroundColor: 'transparent', outline: 'none', cursor: "pointer" }}
-                    >
-                      <img
-                        id={img.sequence_id}
-                        className={`seq-${img.sequence_id}`}
-                        src={img.image_url}
-                        alt={img.sequence_id}
-                        key={`seq-id-${img.listing_id}`}
-                        style={{ height: '100%', width: 'auto' }}
-                      />
-                    </button>
-                  </li>
-                </ul>
+                <li style={{  listStyleType: 'none', borderRadius: '4px' }}>
+                  <CarouselImageButtons
+                    onClick={this.handleCarouselClick.bind(this)}
+                    style={{ width: '64px', height: '64px', border: 'none', backgroundColor: 'transparent', outline: 'none', cursor: "pointer" }}
+                  >
+                    <img
+                      id={img.sequence_id}
+                      className={`seq-${img.sequence_id}`}
+                      src={img.image_url}
+                      alt={img.sequence_id}
+                      key={`seq-id-${img.listing_id}`}
+                      style={{ height: '100%', width: 'auto' }}
+                    />
+                  </CarouselImageButtons>
+                </li>
               </ImageCarouselDiv>
             );
           })}
-        </div>
+          </ul>
+          <p id='img-totals'>{this.props.clickedImageObj.sequence_id}/{this.props.listingData.length}</p>
+          <p id='img-caption'>{this.props.clickedImageObj.caption}</p>
+        </CarouselContainerDiv>
       );
     } else {
       return null;

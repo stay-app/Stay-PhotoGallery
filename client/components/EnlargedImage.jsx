@@ -3,10 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MainImage = styled.div`
+  verticalAlign: middle;
+  float: left;
+  /* display: grid; */
+  /* grid-template-columns: 50% 50%; */
   /* height: 788px;
   width: 525px;
-  padding: 40px;
-  verticalAlign: middle; */
+  padding: 40px;*/
 `;
 
 class EnlargedImage extends React.Component {
@@ -38,8 +41,8 @@ class EnlargedImage extends React.Component {
   render() {
     return (
       <MainImage>
-        {this.props.children}
         <button id='btn-back' onClick={this.handleBackClick.bind(this)}>BACK</button>
+        {this.props.children}
         <button id='btn-next' onClick={this.handleNextClick.bind(this)}>NEXT</button>
       </MainImage>
     );

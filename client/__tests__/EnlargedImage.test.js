@@ -58,7 +58,6 @@ const baseProps = {
 const wrapper = shallow(<EnlargedImage {...baseProps}/>);
 
 it('Displays the MainImage div', () => {
-  console.log(wrapper.debug());
   expect(wrapper.exists('EnlargedImage__MainImage')).toEqual(true);
 });
 
