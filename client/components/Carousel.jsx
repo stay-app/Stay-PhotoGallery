@@ -23,9 +23,9 @@ class Carousel extends React.Component {
         <div>
           <p>{this.props.clickedImageObj.caption}</p>
           <p>{this.props.clickedImageObj.sequence_id}/{this.props.listingData.length}</p>
-          {this.props.listingData.map((img) => {
+          {this.props.listingData.map((img, idx) => {
             return (
-              <ImageCarouselDiv key={img.sequence_id}>
+              <ImageCarouselDiv key={idx}>
                 <ul>
                   <li style={{  listStyleType: 'none', borderRadius: '4px' }}>
                     <button
@@ -36,7 +36,7 @@ class Carousel extends React.Component {
                         id={img.sequence_id}
                         src={img.image_url}
                         alt={img.sequence_id}
-                        key={img.sequence_id}
+                        key={`seq-id-${img.listing_id}`}
                         style={{ height: '100%', width: 'auto' }}
                       />
                     </button>

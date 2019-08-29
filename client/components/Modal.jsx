@@ -32,7 +32,12 @@ class Modal extends React.Component {
         }}
         // onClick={this.props.handleCloseModal}
       >
-          <EnlargedImage>{this.props.children}</EnlargedImage>
+          <EnlargedImage
+            clickedImageObj={this.props.clickedImageObj}
+            listingData={this.props.listingData}
+            changeClickedObj={this.props.changeClickedObj}
+          >
+            {this.props.children}</EnlargedImage>
           <Carousel
             listingData={this.props.listingData}
             clickedImageObj={this.props.clickedImageObj}

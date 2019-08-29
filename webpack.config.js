@@ -16,8 +16,14 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['babel-plugin-styled-components', 'babel-jest'],
+            plugins: ['babel-plugin-styled-components'],
           },
+        },
+      },
+      {
+        test: /\.svg$/,
+        use: {
+          loader: 'svg-inline-loader',
         },
       },
     ],
