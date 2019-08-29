@@ -32,6 +32,7 @@ class Modal extends React.Component {
         }}
         // onClick={this.props.handleCloseModal}
       >
+          <button onClick={this.props.handleCloseModal}>X</button>
           <EnlargedImage
             clickedImageObj={this.props.clickedImageObj}
             listingData={this.props.listingData}
