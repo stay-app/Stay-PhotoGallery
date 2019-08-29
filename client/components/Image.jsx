@@ -15,9 +15,9 @@ const LeftHalf = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  /* object-fit: cover; */
   max-width: 50vw;
   grid-template-rows: 419px;
+  /* object-fit: cover; */
   /* position: absolute; */
 `;
 
@@ -82,21 +82,25 @@ class Image extends React.Component {
                 id={this.props.listingData[1].sequence_id}
                 src={this.props.listingData[1].image_url}
                 alt={this.props.listingData[1].caption}
+                style={{ maxWidth: '100%', maxHeight: 'auto' }}
               />
               <img
                 id={this.props.listingData[2].sequence_id}
                 src={this.props.listingData[2].image_url}
                 alt={this.props.listingData[2].caption}
+                style={{ maxWidth: '100%', maxHeight: 'auto' }}
               />
               <img
                 id={this.props.listingData[3].sequence_id}
                 src={this.props.listingData[3].image_url}
                 alt={this.props.listingData[3].caption}
+                style={{ maxWidth: '100%', maxHeight: 'auto' }}
               />
               <img
                 id={this.props.listingData[4].sequence_id}
                 src={this.props.listingData[4].image_url}
                 alt={this.props.listingData[4].caption}
+                style={{ maxWidth: '100%', maxHeight: 'auto' }}
               />
             </RightHalf>
         </Wrapper>
