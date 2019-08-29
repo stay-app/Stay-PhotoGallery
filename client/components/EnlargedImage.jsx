@@ -1,7 +1,6 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import back from '../assets/back.svg';
 
 const MainImage = styled.div`
   /* height: 788px;
@@ -40,8 +39,8 @@ class EnlargedImage extends React.Component {
     return (
       <MainImage>
         {this.props.children}
-        <button onClick={this.handleBackClick.bind(this)}>BACK</button>
-        <button onClick={this.handleNextClick.bind(this)}>NEXT</button>
+        <button id='btn-back' onClick={this.handleBackClick.bind(this)}>BACK</button>
+        <button id='btn-next' onClick={this.handleNextClick.bind(this)}>NEXT</button>
       </MainImage>
     );
   }
