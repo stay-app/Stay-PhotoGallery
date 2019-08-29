@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/images/15')
+    axios.get('/api/images/7')
       .then(data => this.setState({ listingData: data.data }))
       // .catch(err => console.log(err));
   }
@@ -66,13 +66,7 @@ class App extends React.Component {
             clickedImageObj={this.state.clickedImageObj}
             handleCloseModal={this.handleCloseModal.bind(this)}
             changeClickedObj={this.changeClickedObj.bind(this)}
-          >
-            <img
-              src={this.state.clickedImageObj.image_url}
-              alt={this.state.clickedImageObj.sequence_id}
-              style={{ width: '65vh', height: '100%', borderRadius: '16px' }}
-            />
-          </Modal>
+          />
         ) : null }
       </Wrapper>
     );
