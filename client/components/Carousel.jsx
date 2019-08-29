@@ -30,11 +30,12 @@ class Carousel extends React.Component {
     if (this.props.clickedImageObj) {
       return (
         <CarouselContainerDiv>
+          <button onClick={this.props.handleCloseModal}>X</button>
           <ul className="carousel-list">
           {this.props.listingData.map((img, idx) => {
             return (
               <ImageCarouselDiv className="carousel" key={idx}>
-                <li style={{  listStyleType: 'none', borderRadius: '4px' }}>
+                <li style={{ listStyleType: 'none', borderRadius: '4px' }}>
                   <CarouselImageButtons
                     onClick={this.handleCarouselClick.bind(this)}
                     style={{ width: '64px', height: '64px', border: 'none', backgroundColor: 'transparent', outline: 'none', cursor: "pointer" }}

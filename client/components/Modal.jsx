@@ -1,8 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import EnlargedImage from './EnlargedImage.jsx';
+import MainImage from './MainImage.jsx';
 import Carousel from './Carousel.jsx';
+
+const ModalWrapper = styled.div`
+  display: flex;
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2000;
+`;
+
+const MainImageWrapper = styled.div`
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 77%;
+  height: 100%;
+`;
+
+const CarouselWrapper = styled.div`
+  display: flex;
+  width: 33%;
+  height: 100%;
+`;
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -22,29 +48,23 @@ class Modal extends React.Component {
 
   render() {
     return ReactDOM.createPortal(
-      <div
-        className="modal-container"
-        style={{
-          background: '#fff',
-          position: 'fixed',
-          width: '100%',
-          height: '100%',
-        }}
-        // onClick={this.props.handleCloseModal}
-      >
-          <button onClick={this.props.handleCloseModal}>X</button>
-          <EnlargedImage
+      <ModalWrapper>
+        <MainImageWrapper>
+          <MainImage
             clickedImageObj={this.props.clickedImageObj}
             listingData={this.props.listingData}
             changeClickedObj={this.props.changeClickedObj}
-          >
-            {this.props.children}</EnlargedImage>
+          />
+        </MainImageWrapper>
+        <CarouselWrapper>
           <Carousel
             listingData={this.props.listingData}
             clickedImageObj={this.props.clickedImageObj}
             changeClickedObj={this.props.changeClickedObj}
+            handleCloseModal={this.props.handleCloseModal}
           />
-      </div>,
+        </CarouselWrapper>
+      </ModalWrapper>,
       this.el,
     );
   }

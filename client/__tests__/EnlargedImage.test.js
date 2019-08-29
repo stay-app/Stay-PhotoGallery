@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, shallow, mount } from 'enzyme';
 import { create } from "react-test-renderer"
 import Adapter from 'enzyme-adapter-react-16';
-import EnlargedImage from '../components/EnlargedImage.jsx';
+import MainImage from '../components/MainImage.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -55,10 +55,10 @@ const baseProps = {
   ]
 };
 
-const wrapper = shallow(<EnlargedImage {...baseProps}/>);
+const wrapper = shallow(<MainImage {...baseProps}/>);
 
 it('Displays the MainImage div', () => {
-  expect(wrapper.exists('EnlargedImage__MainImage')).toEqual(true);
+  expect(wrapper.exists('MainImage__MainImage')).toEqual(true);
 });
 
 it('Has next and back buttons', () => {
