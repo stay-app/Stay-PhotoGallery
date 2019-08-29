@@ -3,11 +3,6 @@ import { configure, shallow, mount } from 'enzyme';
 import { create } from "react-test-renderer"
 import Adapter from 'enzyme-adapter-react-16';
 import Image from '../components/Image.jsx';
-import {
-  Wrapper,
-  LeftHalf,
-  RightHalf,
-} from '../components/image-styles.js';
 
 configure({ adapter: new Adapter() });
 
