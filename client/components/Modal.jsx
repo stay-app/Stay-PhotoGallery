@@ -32,6 +32,23 @@ const CarouselWrapper = styled.div`
   display: flex;
   width: 25%;
   height: 100%;
+  overflow-x: hidden;
+`;
+
+const ModalCloseButtonWrapper = styled.div`
+  position: absolute;
+  right: 0px;
+  margin-top: 40px;
+  margin-right: 40px;
+`;
+
+const ModalCloseButton = styled.button`
+  padding: 32px;
+  maring: -32px;
+  border:none;
+  background-color:transperant;
+  outline:none;
+  cursor: pointer;
 `;
 
 const modalRoot = document.getElementById('modal-root');
@@ -53,6 +70,9 @@ class Modal extends React.Component {
   render() {
     return ReactDOM.createPortal(
       <ModalWrapper>
+        <ModalCloseButtonWrapper>
+          <ModalCloseButton onClick={this.props.handleCloseModal}>X</ModalCloseButton>
+        </ModalCloseButtonWrapper>
         <MainImageWrapper>
           <MainImage
             clickedImageObj={this.props.clickedImageObj}

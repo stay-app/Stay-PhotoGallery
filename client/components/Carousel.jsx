@@ -15,7 +15,9 @@ const CarouselSliderWrapper = styled.ul`
   width: '100%';
   left: 60px;
   max-height: 64px;
-  transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  overflow: hidden;
+  transition: -webkit-transform 0.3s ease-out 0s;
+  margin-bottom: 70px;
 `;
 
 const CarouselSlider = styled.li`
@@ -31,6 +33,26 @@ const CarouselSlider = styled.li`
   outline: none
   background-color: transparent;
   cursor: pointer;
+`;
+
+const CarouselLeftGradient = styled.div`
+  position: absolute;
+  height: 64px;
+  top: 15%;
+  transform: rotate(180deg);
+  z-index: 1;
+  width: 20px;
+  background: linear-gradient(270deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 90.82%);
+`;
+
+const CarouselRightGradient = styled.div`
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 64px;
+  z-index: 1;
+  width: 20px;
+  background: linear-gradient(270deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 90.82%);
 `;
 
 const CarouselDetailsWrapper = styled.div`
@@ -63,8 +85,10 @@ class Carousel extends React.Component {
     if (this.props.clickedImageObj) {
       return (
         <CarouselWrapper>
-          <button onClick={this.props.handleCloseModal}>X</button>
-          <CarouselSliderWrapper style={{transform: 'translateX(-100px)'}}>
+          <CarouselLeftGradient/>
+          <CarouselRightGradient/>
+          <CarouselSliderWrapper style={{ transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1500 / this.props.listingData.length)}px)` }}>
+            {/* <div style={{ position: 'absolute', right: '74.4%', background: 'white', zIndex: '1', height: '64px', width: '100px' }}></div> */}
           {this.props.listingData.map((img, idx) => {
             return (
                   <CarouselSlider key={idx}>
