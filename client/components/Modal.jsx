@@ -20,13 +20,13 @@ const MainImageWrapper = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  width: 77%;
+  width: 75%;
   height: 100%;
 `;
 
 const CarouselWrapper = styled.div`
   display: flex;
-  width: 33%;
+  width: 25%;
   height: 100%;
 `;
 
@@ -54,6 +54,8 @@ class Modal extends React.Component {
             clickedImageObj={this.props.clickedImageObj}
             listingData={this.props.listingData}
             changeClickedObj={this.props.changeClickedObj}
+            handleBackClick={this.props.handleBackClick}
+            handleNextClick={this.props.handleNextClick}
           />
         </MainImageWrapper>
         <CarouselWrapper>
