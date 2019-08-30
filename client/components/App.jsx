@@ -5,8 +5,13 @@ import Image from './Image.jsx';
 import Modal from './Modal.jsx';
 
 const Wrapper = styled.div`
-  border: 1px solid black;
-  float:left;
+  float: left;
+  margin-left: -10px;
+  padding-left: -10px;
+  margin-right: -10px;
+  margin-top: -8px;
+  width: 105%;
+  overflow: hidden;
 `;
 
 class App extends React.Component {
@@ -22,7 +27,7 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyShortcuts);
-    axios.get('/api/images/1')
+    axios.get('/api/images/100')
       .then(data => this.setState({ listingData: data.data }))
       // .catch(err => console.log(err));
   }

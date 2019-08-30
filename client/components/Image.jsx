@@ -4,34 +4,35 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display:grid;
   grid-template-columns: 50% 50%;
-  overflow: auto;
   max-height: 442px;
 `;
 
 const LeftHalf = styled.div`
-  border: 4px solid red;
+  border: 1px solid #484848;
   float: left;
   background-image: url('${(props) => props.imgObj}');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  max-width: 50vw;
   grid-template-rows: 419px;
-  /* object-fit: cover; */
-  /* position: absolute; */
+  transform: scale(1);
+  /* transition: -ms-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s !important; */
+  &:hover {
+    transform: scale(1.05);
+    transition: -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  }
 `;
 
 const RightHalf = styled.div`
-  border: 1px solid blue;
-  float: right;
+  border: 1px solid #484848;
   display: grid;
+  float: right;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
   max-height: 419px;
 `;
-
 
 class Image extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class Image extends React.Component {
     this.state = {
       clickedImageUrl: '',
     }
+    this.inputRef = React.createRef();
   }
 
   handleImageClick(e) {
@@ -51,10 +53,6 @@ class Image extends React.Component {
     this.props.handleOpenModal(clickedImageSeq);
   }
 
-  handleImageHover() {
-    // do something
-  }
-
   render() {
     if (this.props.listingData.length > 0) {
       return (
@@ -63,16 +61,11 @@ class Image extends React.Component {
               id={this.props.listingData[0].sequence_id}
               className={`seq-${this.props.listingData[0].sequence_id}`}
               imgObj={this.props.listingData[0].image_url}
-              onmouseover=""
               style={{cursor: "pointer"}}
               onClick={this.handleImageClick.bind(this)}
-              />
-              {/* <img
-                id={this.props.listingData[0].sequence_id}
-                src={this.props.listingData[0].image_url}
-                alt={this.props.listingData[0].caption}
-                style={{ cursor: 'pointer', position: 'relative', maxWidth: '100%', maxHeight: '419px' }}
-              /> */}
+              ref={this.inputRef}
+              onMouseEnter={() => {console.log(this.inputRef.current)}}
+            />
             <RightHalf
               onClick={this.handleImageClick.bind(this)}
               onmouseover=""

@@ -12,7 +12,10 @@ const ModalWrapper = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 2000;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;;
+  font-size: 16px;
+  color: #484848;
+  -webkit-font-smoothing: anti-aliased;
 `;
 
 const MainImageWrapper = styled.div`
@@ -22,6 +25,7 @@ const MainImageWrapper = styled.div`
   left: 0;
   width: 75%;
   height: 100%;
+  z-index: 10;
 `;
 
 const CarouselWrapper = styled.div`

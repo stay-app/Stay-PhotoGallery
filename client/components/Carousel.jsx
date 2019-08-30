@@ -1,31 +1,52 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const CarouselWrapper = styled.div`
   display: block;
   margin: 0;
   margin-bottom: 32px;
+  box-sizing: border-box;
+  padding-top: 104px;
 `;
 
-const CarouselImageButtonsWrapper = styled.ul`
+const CarouselSliderWrapper = styled.ul`
+  display: flex;
+  position: relative;
   width: '100%';
-  float: right;
-  transition: transform 0.3s ease-out 0s !important;
+  left: 60px;
+  max-height: 64px;
+  transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 `;
 
-const CarouselImageButtons = styled.li`
+const CarouselSlider = styled.li`
   display: list-item;
   float: left;
-  list-style-type: none;
   overflow: hidden;
   border-radius: 4px;
-  width: 48px;
-  height: 48px;
+  max-width: 64px;
+  max-height: 64px;
+  margin-right: 15px;
+  list-style-type: none;
   border: none;
   outline: none
   background-color: transparent;
   cursor: pointer;
+`;
+
+const CarouselDetailsWrapper = styled.div`
+  padding: 0px 40px 0px 0px;
+`;
+
+const CarouselCount = styled.div`
+  font-weight: bold;
+  margin-bottom: 16px;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+`;
+
+const Caption = styled.div`
+  word-break: break-word;
+  line-height: 1.375em;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
 `;
 
 class Carousel extends React.Component {
@@ -43,12 +64,12 @@ class Carousel extends React.Component {
       return (
         <CarouselWrapper>
           <button onClick={this.props.handleCloseModal}>X</button>
-          <CarouselImageButtonsWrapper>
+          <CarouselSliderWrapper style={{transform: 'translateX(-100px)'}}>
           {this.props.listingData.map((img, idx) => {
             return (
-              <CarouselImageButtonsWrapper className="carousel" key={idx}>
-                  <CarouselImageButtons onClick={this.handleCarouselClick.bind(this)}>
+                  <CarouselSlider key={idx}>
                     <img
+                      onClick={this.handleCarouselClick.bind(this)}
                       id={img.sequence_id}
                       className={`seq-${img.sequence_id}`}
                       src={img.image_url}
@@ -56,13 +77,14 @@ class Carousel extends React.Component {
                       key={`seq-id-${img.listing_id}`}
                       style={{ height: '100%', width: 'auto', borderRadius: '4px' }}
                     />
-                  </CarouselImageButtons>
-              </CarouselImageButtonsWrapper>
+                  </CarouselSlider>
             );
           })}
-          </CarouselImageButtonsWrapper>
-          <p id='img-totals'>{this.props.clickedImageObj.sequence_id}/{this.props.listingData.length}</p>
-          <p id='img-caption'>{this.props.clickedImageObj.caption}</p>
+          </CarouselSliderWrapper>
+          <CarouselDetailsWrapper>
+            <CarouselCount id='img-totals'>{this.props.clickedImageObj.sequence_id} / {this.props.listingData.length}</CarouselCount>
+            <Caption id='img-caption'>{this.props.clickedImageObj.caption}</Caption>
+          </CarouselDetailsWrapper>
         </CarouselWrapper>
       );
     } else {
