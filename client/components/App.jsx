@@ -9,18 +9,6 @@ const Wrapper = styled.div`
   float:left;
 `;
 
-// const Modal = styled.div`
-//   display: none; /* hidden by default */
-//   position: fixed;
-//   z-index: 1; /* sits on top */
-//   width: 100%;
-//   height: 100%;
-//   background-color: white;
-// `;
-
-const Button = styled.button`
-`;
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +21,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/images/7')
+    window.addEventListener('keydown', this.handleKeyShortcuts);
+    axios.get('/api/images/1')
       .then(data => this.setState({ listingData: data.data }))
       // .catch(err => console.log(err));
   }
@@ -52,6 +41,41 @@ class App extends React.Component {
     this.setState({ clickedImageObj });
   }
 
+  handleBackClick() {
+    const currSeqId = this.state.clickedImageObj.sequence_id;
+    let prevImgSeqId = currSeqId - 1;
+    prevImgSeqId = prevImgSeqId > 0 ? prevImgSeqId : null;
+    if (prevImgSeqId) {
+      const prevImgObj = this.state.listingData.filter((img) => img.sequence_id === prevImgSeqId)[0];
+      this.changeClickedObj(prevImgObj);
+    }
+  }
+
+  handleNextClick() {
+    const currSeqId = this.state.clickedImageObj.sequence_id;
+    let nextImgSeqId = currSeqId + 1;
+    nextImgSeqId = nextImgSeqId < this.state.listingData.length + 1 ? nextImgSeqId : null;
+    if (nextImgSeqId) {
+      const nextImgObj = this.state.listingData.filter((img) => img.sequence_id === nextImgSeqId)[0];
+      this.changeClickedObj(nextImgObj);
+    }
+  }
+
+  // handleKeyShortcuts(e) {
+  //   switch (e.which) {
+  //     case 37: // leftArrow
+  //       this.handleBackClick();
+  //       break;
+  //     case 39: // rightArrow
+  //       this.handleNextClick();
+  //       break;
+  //     case 27: // esc
+  //       this.handleCloseModal();
+  //       break;
+  //     default:
+  //   }
+  // }
+
   render() {
     return (
       <Wrapper>
@@ -66,6 +90,8 @@ class App extends React.Component {
             clickedImageObj={this.state.clickedImageObj}
             handleCloseModal={this.handleCloseModal.bind(this)}
             changeClickedObj={this.changeClickedObj.bind(this)}
+            handleBackClick={this.handleBackClick.bind(this)}
+            handleNextClick={this.handleNextClick.bind(this)}
           />
         ) : null }
       </Wrapper>
