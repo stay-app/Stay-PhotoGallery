@@ -26,6 +26,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    window.handleBackClick = this.handleBackClick.bind(this);
+    window.handleNextClick = this.handleNextClick.bind(this);
+    window.handleCloseModal = this.handleCloseModal.bind(this);
     window.addEventListener('keydown', this.handleKeyShortcuts);
     axios.get('/api/images/100')
       .then(data => this.setState({ listingData: data.data }))
@@ -66,20 +69,20 @@ class App extends React.Component {
     }
   }
 
-  // handleKeyShortcuts(e) {
-  //   switch (e.which) {
-  //     case 37: // leftArrow
-  //       this.handleBackClick();
-  //       break;
-  //     case 39: // rightArrow
-  //       this.handleNextClick();
-  //       break;
-  //     case 27: // esc
-  //       this.handleCloseModal();
-  //       break;
-  //     default:
-  //   }
-  // }
+  handleKeyShortcuts(e) {
+    switch (e.which) {
+      case 37: // leftArrow
+        this.handleBackClick();
+        break;
+      case 39: // rightArrow
+        this.handleNextClick();
+        break;
+      case 27: // esc
+        this.handleCloseModal();
+        break;
+      default:
+    }
+  }
 
   render() {
     return (

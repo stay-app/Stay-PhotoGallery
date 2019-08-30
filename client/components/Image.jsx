@@ -15,11 +15,11 @@ const LeftHalf = styled.div`
   background-repeat: no-repeat;
   background-position: 50% 50%;
   grid-template-rows: 419px;
-  transform: scale(1);
-  /* transition: -ms-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s !important; */
+  transition: -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  /* opacity 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s */
+
   &:hover {
     transform: scale(1.05);
-    transition: -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   }
 `;
 
@@ -32,6 +32,18 @@ const RightHalf = styled.div`
   overflow: hidden;
   width: 100%;
   max-height: 419px;
+`;
+
+const QuadrantWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  /* opacity 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s */
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 class Image extends React.Component {
@@ -71,30 +83,38 @@ class Image extends React.Component {
               onmouseover=""
               style={{cursor: "pointer"}}
             >
-              <img
-                id={this.props.listingData[1].sequence_id}
-                src={this.props.listingData[1].image_url}
-                alt={this.props.listingData[1].caption}
-                style={{ maxWidth: '100%', maxHeight: 'auto' }}
-              />
-              <img
-                id={this.props.listingData[2].sequence_id}
-                src={this.props.listingData[2].image_url}
-                alt={this.props.listingData[2].caption}
-                style={{ maxWidth: '100%', maxHeight: 'auto' }}
-              />
-              <img
-                id={this.props.listingData[3].sequence_id}
-                src={this.props.listingData[3].image_url}
-                alt={this.props.listingData[3].caption}
-                style={{ maxWidth: '100%', maxHeight: 'auto' }}
-              />
-              <img
-                id={this.props.listingData[4].sequence_id}
-                src={this.props.listingData[4].image_url}
-                alt={this.props.listingData[4].caption}
-                style={{ maxWidth: '100%', maxHeight: 'auto' }}
-              />
+              <QuadrantWrapper>
+                <img
+                  id={this.props.listingData[1].sequence_id}
+                  src={this.props.listingData[1].image_url}
+                  alt={this.props.listingData[1].caption}
+                  style={{ maxWidth: '105%', maxHeight: 'auto' }}
+                />
+              </QuadrantWrapper>
+              <QuadrantWrapper>
+                <img
+                  id={this.props.listingData[2].sequence_id}
+                  src={this.props.listingData[2].image_url}
+                  alt={this.props.listingData[2].caption}
+                  style={{ maxWidth: '105%', maxHeight: 'auto' }}
+                />
+              </QuadrantWrapper>
+              <QuadrantWrapper>
+                <img
+                  id={this.props.listingData[3].sequence_id}
+                  src={this.props.listingData[3].image_url}
+                  alt={this.props.listingData[3].caption}
+                  style={{ maxWidth: '105%', maxHeight: 'auto' }}
+                />
+              </QuadrantWrapper>
+              <QuadrantWrapper>
+                <img
+                  id={this.props.listingData[4].sequence_id}
+                  src={this.props.listingData[4].image_url}
+                  alt={this.props.listingData[4].caption}
+                  style={{ maxWidth: '105%', maxHeight: 'auto' }}
+                />
+              </QuadrantWrapper>
             </RightHalf>
         </Wrapper>
       )

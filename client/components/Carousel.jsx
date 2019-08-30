@@ -7,6 +7,7 @@ const CarouselWrapper = styled.div`
   margin-bottom: 32px;
   box-sizing: border-box;
   padding-top: 104px;
+  width: 100%; /*this breaks the slider width to 0*/
 `;
 
 const CarouselSliderWrapper = styled.ul`
