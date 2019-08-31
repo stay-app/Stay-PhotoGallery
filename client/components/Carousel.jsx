@@ -20,7 +20,6 @@ const CarouselWrapper = styled.div`
 const CarouselSliderWrapper = styled.ul`
   display: flex;
   position: absolute;
-  left: 60px;
   max-height: 64px;
   width: auto%:
   overflow: hidden;
@@ -45,9 +44,6 @@ const CarouselSliderItem = styled.li`
   &:hover {
     opacity: 1;
   }
-  /* ${({ galleryHover, galleryHoverItem }) => galleryHover && galleryHoverItem !== 1 && `
-    border: 1px solid #484848;
-  `} */
 `;
 
 const CarouselLeftGradient = styled.div`
@@ -94,8 +90,9 @@ class Carousel extends React.Component {
   }
 
   handleCarouselClick(e) {
+    // this.inputRef.current.setAttribute('border', '3px solid #484848');
+    this.inputRef.current.setAttribute('opacity', '1');
     console.log(this.inputRef.current);
-    this.inputRef.current.setAttribute('border', '1px solid #484848');
     const clickedImageObj = this.props.listingData.filter((img) => img.sequence_id === Number(e.target.id))[0];
     this.props.changeClickedObj(clickedImageObj);
   }
@@ -106,11 +103,12 @@ class Carousel extends React.Component {
         <CarouselWrapper>
           <CarouselLeftGradient/>
           <CarouselRightGradient/>
-          <CarouselSliderWrapper style={{ transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1500 / this.props.listingData.length)}px)` }}>
+          <CarouselSliderWrapper style={{ transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1700 / this.props.listingData.length)}px)` }}>
           {this.props.listingData.map((img, idx) => {
             return (
-                  <CarouselSliderItem ref={this.inputRef} key={idx}>
+                  <CarouselSliderItem key={idx}>
                     <img
+                      ref={this.inputRef}
                       onClick={this.handleCarouselClick.bind(this)}
                       id={img.sequence_id}
                       className={`seq-${img.sequence_id}`}
