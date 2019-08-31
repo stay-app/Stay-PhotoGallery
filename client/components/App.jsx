@@ -5,12 +5,11 @@ import Image from './Image.jsx';
 import Modal from './Modal.jsx';
 
 const Wrapper = styled.div`
+  border: 0.5px solid #484848;
   float: left;
-  margin-left: -10px;
-  padding-left: -10px;
-  margin-right: -10px;
+  margin-left: -8px;
+  margin-right: -8px;
   margin-top: -8px;
-  width: 105%;
   overflow: hidden;
 `;
 

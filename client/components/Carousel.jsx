@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// to do
+// if selected last carousel item, hide right gradient
+// apply border to carousel item when it's clicked
+// apply brightness to carousel item unless it's selected or hovered
+// breakpoint to make carousel item 48px: width: 1200px
+// breakpoint to move carousel to bottom: width: 1128px
+
 const CarouselWrapper = styled.div`
   display: block;
   margin: 0;
@@ -12,34 +19,41 @@ const CarouselWrapper = styled.div`
 
 const CarouselSliderWrapper = styled.ul`
   display: flex;
-  position: relative;
-  width: '100%';
+  position: absolute;
   left: 60px;
   max-height: 64px;
+  width: auto%:
   overflow: hidden;
   transition: -webkit-transform 0.3s ease-out 0s;
+  margin-top: 5%;
   margin-bottom: 70px;
 `;
 
-const CarouselSlider = styled.li`
+const CarouselSliderItem = styled.li`
   display: list-item;
   float: left;
   overflow: hidden;
   border-radius: 4px;
-  max-width: 64px;
-  max-height: 64px;
   margin-right: 15px;
   list-style-type: none;
+  max-width: 64px;
   border: none;
   outline: none
   background-color: transparent;
   cursor: pointer;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+  /* ${({ galleryHover, galleryHoverItem }) => galleryHover && galleryHoverItem !== 1 && `
+    border: 1px solid #484848;
+  `} */
 `;
 
 const CarouselLeftGradient = styled.div`
   position: absolute;
   height: 64px;
-  top: 15%;
+  top: 22%;
   transform: rotate(180deg);
   z-index: 1;
   width: 20px;
@@ -49,7 +63,7 @@ const CarouselLeftGradient = styled.div`
 const CarouselRightGradient = styled.div`
   position: absolute;
   right: 0;
-  top: 15%;
+  top: 22%;
   height: 64px;
   z-index: 1;
   width: 20px;
@@ -61,6 +75,7 @@ const CarouselDetailsWrapper = styled.div`
 `;
 
 const CarouselCount = styled.div`
+  margin-top: 60%;
   font-weight: bold;
   margin-bottom: 16px;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
@@ -75,9 +90,12 @@ const Caption = styled.div`
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
+    this.inputRef = React.createRef();
   }
 
   handleCarouselClick(e) {
+    console.log(this.inputRef.current);
+    this.inputRef.current.setAttribute('border', '1px solid #484848');
     const clickedImageObj = this.props.listingData.filter((img) => img.sequence_id === Number(e.target.id))[0];
     this.props.changeClickedObj(clickedImageObj);
   }
@@ -89,10 +107,9 @@ class Carousel extends React.Component {
           <CarouselLeftGradient/>
           <CarouselRightGradient/>
           <CarouselSliderWrapper style={{ transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1500 / this.props.listingData.length)}px)` }}>
-            {/* <div style={{ position: 'absolute', right: '74.4%', background: 'white', zIndex: '1', height: '64px', width: '100px' }}></div> */}
           {this.props.listingData.map((img, idx) => {
             return (
-                  <CarouselSlider key={idx}>
+                  <CarouselSliderItem ref={this.inputRef} key={idx}>
                     <img
                       onClick={this.handleCarouselClick.bind(this)}
                       id={img.sequence_id}
@@ -102,7 +119,7 @@ class Carousel extends React.Component {
                       key={`seq-id-${img.listing_id}`}
                       style={{ height: '100%', width: 'auto', borderRadius: '4px' }}
                     />
-                  </CarouselSlider>
+                  </CarouselSliderItem>
             );
           })}
           </CarouselSliderWrapper>
