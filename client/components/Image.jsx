@@ -20,18 +20,6 @@ const LeftHalf = styled.div`
   transition: -webkit-transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, filter 0.5s;
   &:hover {
     transform: scale(1.03);
-    filter: brightness(75%);
-  }
-`;
-
-const LeftHalfImage = styled.img`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: -webkit-transform 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-  &:hover {
-    transform: scale(1.03);
   }
 `;
 
@@ -46,6 +34,8 @@ const RightHalf = styled.div`
   cursor: pointer;
 `;
 
+
+
 const QuadrantWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -53,7 +43,6 @@ const QuadrantWrapper = styled.div`
   transition: transform 450ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, filter 0.5s;
   &:hover {
     transform: scale(1.03);
-    filter: brightness(75%);
   }
 `;
 
@@ -71,6 +60,41 @@ const QuadrantImage = styled.img`
   }
 `;
 
+const LeftHalfImage = styled.img`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: -webkit-transform 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  /* &:hover {
+    transform: scale(1.03);
+  } */
+  ${QuadrantImage}:hover & {
+    filter: brightness(75%);
+  }
+`;
+
+const ViewButtonWrapper = styled.div`
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  display: inline-block;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.14);
+  width: 113.78px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: white;
+  color: #484848;
+  right: 1%;
+  top: 45%;
+  cursor: pointer;
+  display: flex;
+  font-family: Helvetica Neue;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+`;
+
 class Image extends React.Component {
   constructor(props) {
     super(props);
@@ -78,6 +102,7 @@ class Image extends React.Component {
     this.state = {
       clickedImageUrl: '',
     }
+    this.inputRef = React.createRef();
   }
 
   handleImageClick(e) {
@@ -89,25 +114,40 @@ class Image extends React.Component {
     this.props.handleOpenModal(clickedImageSeq);
   }
 
+  handleHover() {
+    this.inputRef.current.setAttribute('class', 'HOVERED');
+    // loop thru all img tags and set class NOT-HOVERED for imgs tht dont have id HOVERED
+    const hovered = document.getElementsByClassName('HOVERED')[0];
+    hovered.setAttribute('filter', 'brightness(75%)');
+    console.log(hovered);
+    // css selector for everything but id hovered to lower brightness
+  }
+
+  viewPhotoButton() {
+    this.props.changeClickedObj(this.props.listingData[0]);
+    this.props.handleOpenModal(this.props.listingData[0].sequence_id);
+  }
+
   render() {
     if (this.props.listingData.length > 0) {
       return (
         <Wrapper>
-            <LeftHalf onClick={this.handleImageClick.bind(this)} className={`seq-${this.props.listingData[0].sequence_id}`}>
-              <LeftHalfImage id={this.props.listingData[0].sequence_id} src={this.props.listingData[0].image_url} alt={this.props.listingData[0].caption}/>
+            <ViewButtonWrapper onClick={this.viewPhotoButton.bind(this)}>View Photos</ViewButtonWrapper>
+            <LeftHalf onClick={this.handleImageClick.bind(this)} className={`seq-${this.props.listingData[0].sequence_id}`} ref={this.inputRef}>
+              <LeftHalfImage id={this.props.listingData[0].sequence_id} src={this.props.listingData[0].image_url} alt=''/>
             </LeftHalf>
             <RightHalf onClick={this.handleImageClick.bind(this)}>
               <QuadrantWrapper>
-                <QuadrantImage id={this.props.listingData[1].sequence_id} src={this.props.listingData[1].image_url} alt={this.props.listingData[1].caption}/>
+                <QuadrantImage id={this.props.listingData[1].sequence_id} src={this.props.listingData[1].image_url} alt=''/>
               </QuadrantWrapper>
               <QuadrantWrapper>
-                <QuadrantImage id={this.props.listingData[2].sequence_id} src={this.props.listingData[2].image_url} alt={this.props.listingData[2].caption}/>
+                <QuadrantImage id={this.props.listingData[2].sequence_id} src={this.props.listingData[2].image_url} alt=''/>
               </QuadrantWrapper>
               <QuadrantWrapper>
-                <QuadrantImage id={this.props.listingData[3].sequence_id} src={this.props.listingData[3].image_url} alt={this.props.listingData[3].caption}/>
+                <QuadrantImage id={this.props.listingData[3].sequence_id} src={this.props.listingData[3].image_url} alt=''/>
               </QuadrantWrapper>
               <QuadrantWrapper>
-                <QuadrantImage id={this.props.listingData[4].sequence_id} src={this.props.listingData[4].image_url} alt={this.props.listingData[4].caption}/>
+                <QuadrantImage id={this.props.listingData[4].sequence_id} src={this.props.listingData[4].image_url} alt=''/>
               </QuadrantWrapper>
             </RightHalf>
         </Wrapper>
