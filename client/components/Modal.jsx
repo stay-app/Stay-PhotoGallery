@@ -15,7 +15,6 @@ const ModalWrapper = styled.div`
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;;
   font-size: 16px;
   color: #484848;
-  -webkit-font-smoothing: anti-aliased;
 `;
 
 const MainImageWrapper = styled.div`
@@ -38,8 +37,8 @@ const CarouselWrapper = styled.div`
 const ModalCloseButtonWrapper = styled.div`
   position: absolute;
   right: 0px;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-top: 30px;
+  margin-right: 30px;
 `;
 
 const ModalCloseButton = styled.button`

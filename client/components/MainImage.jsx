@@ -9,6 +9,7 @@ const MainDiv = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+  background-color: white;
 `;
 
 const PrevButtonWrapper = styled.div`
@@ -47,6 +48,12 @@ const MainImageDiv = styled.div`
   justify-content: center;
 `;
 
+const MainImageElement = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+`;
+
 class MainImage extends React.Component {
   constructor(props) {
     super(props);
@@ -71,10 +78,7 @@ class MainImage extends React.Component {
           </PrevButton>
         </PrevButtonWrapper>
         <MainImageDiv>
-          <img
-          src={this.props.clickedImageObj.image_url}
-          alt=''
-          style={{ width: '100%', height: '100%', borderRadius: '16px', opacity: '1', transition: 'opacity 150ms ease-in-out 0s, transform 150ms ease-in-out 0s'}}/>
+          <MainImageElement src={this.props.clickedImageObj.image_url} alt='' onClick={this.props.handleNextClick}/>
         </MainImageDiv>
         <NextButtonWrapper>
           <NextButton>
