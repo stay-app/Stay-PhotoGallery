@@ -27,6 +27,7 @@ const CarouselSliderWrapper = styled.ul`
   margin-top: 5%;
   margin-bottom: 70px;
 `;
+// transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1700 / this.props.listingData.length)}px)`
 
 const CarouselSliderItem = styled.li`
   display: list-item;
@@ -37,7 +38,7 @@ const CarouselSliderItem = styled.li`
   list-style-type: none;
   max-width: 64px;
   border: none;
-  outline: none
+  outline: none;
   background-color: transparent;
   cursor: pointer;
   opacity: 0.7;
@@ -103,23 +104,21 @@ class Carousel extends React.Component {
         <CarouselWrapper>
           <CarouselLeftGradient/>
           <CarouselRightGradient/>
-          <CarouselSliderWrapper style={{ transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1700 / this.props.listingData.length)}px)` }}>
-          {this.props.listingData.map((img, idx) => {
-            return (
-                  <CarouselSliderItem key={idx}>
-                    <img
-                      ref={this.inputRef}
-                      onClick={this.handleCarouselClick.bind(this)}
-                      id={img.sequence_id}
-                      className={`seq-${img.sequence_id}`}
-                      src={img.image_url}
-                      alt=''
-                      key={`seq-id-${img.listing_id}`}
-                      style={{ height: '100%', width: 'auto', borderRadius: '4px' }}
-                    />
-                  </CarouselSliderItem>
-            );
-          })}
+          <CarouselSliderWrapper style={{transform: `translateX(-${this.props.clickedImageObj.sequence_id * (1700 / this.props.listingData.length)}px)`}}>
+            {this.props.listingData.map((img, idx) => {
+              return <CarouselSliderItem key={idx}>
+                  <img
+                    ref={this.inputRef}
+                    onClick={this.handleCarouselClick.bind(this)}
+                    id={img.sequence_id}
+                    className={`seq-${img.sequence_id}`}
+                    src={img.image_url}
+                    alt=''
+                    key={`seq-id-${img.listing_id}`}
+                    style={{ height: '100%', width: 'auto', borderRadius: '4px' }}
+                  />
+            </CarouselSliderItem>
+            })}
           </CarouselSliderWrapper>
           <CarouselDetailsWrapper>
             <CarouselCount id='img-totals'>{this.props.clickedImageObj.sequence_id} / {this.props.listingData.length}</CarouselCount>
