@@ -30,7 +30,7 @@ class App extends React.Component {
     window.handleCloseModal = this.handleCloseModal.bind(this);
     window.addEventListener('keydown', this.handleKeyShortcuts);
     axios.get('/api/images/100')
-      .then(data => this.setState({ listingData: data.data }))
+      .then((data) => this.setState({ listingData: data.data }))
       // .catch(err => console.log(err));
   }
 
