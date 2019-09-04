@@ -1,6 +1,6 @@
 import React from 'react';
 import { configure, shallow, mount } from 'enzyme';
-import App from '../components/App.jsx'
+import PhotoGallery from '../components/PhotoGallery.jsx'
 import { create } from "react-test-renderer"
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -34,10 +34,10 @@ const baseProps = {
 };
 
 let wrapper;
-beforeEach(() => wrapper = shallow(<App {...baseProps}/>));
+beforeEach(() => wrapper = shallow(<PhotoGallery {...baseProps}/>));
 
 
-describe('App has initial state props', () => {
+describe('Parent component has initial state props', () => {
   it('Should have a listingData prop', () => {
     expect(wrapper.state()).toHaveProperty('listingData')
   });
