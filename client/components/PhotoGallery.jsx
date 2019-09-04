@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-class App extends React.Component {
+class PhotoGallery extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,7 +31,7 @@ class App extends React.Component {
     window.addEventListener('keydown', this.handleKeyShortcuts);
     axios.get('/api/images/100')
       .then((data) => this.setState({ listingData: data.data }))
-      // .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   handleOpenModal(clickedImageSeqId) {
@@ -106,4 +106,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default PhotoGallery;

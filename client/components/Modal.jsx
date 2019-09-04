@@ -51,7 +51,7 @@ const ModalCloseButton = styled.button`
   cursor: pointer;
 `;
 
-const modalRoot = document.getElementById('modal-root');
+const root = document.getElementById('PhotoGallery');
 
 class Modal extends React.Component {
   constructor(props) {
@@ -60,11 +60,11 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    modalRoot.appendChild(this.el);
+    root.appendChild(this.el);
   }
 
   componentWillUnmount() {
-    modalRoot.removeChild(this.el);
+    root.removeChild(this.el);
   }
 
   render() {

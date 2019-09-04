@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display:grid;
   grid-template-columns: 50% 50%;
-  /* max-height: 442px; */
 `;
 
 const LeftHalf = styled.div`
@@ -34,8 +33,6 @@ const RightHalf = styled.div`
   cursor: pointer;
 `;
 
-
-
 const QuadrantWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -51,8 +48,6 @@ const QuadrantImage = styled.img`
   display: flex;
   width: 100%;
   height: 100%;
-  /* max-width: 100%; */
-  /* max-height: 100%; */
   position: relative;
   transition: -webkit-transform 600ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, filter 0.5s;
   &:hover {
@@ -66,9 +61,6 @@ const LeftHalfImage = styled.img`
   height: 100%;
   position: relative;
   transition: -webkit-transform 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-  /* &:hover {
-    transform: scale(1.03);
-  } */
   ${QuadrantImage}:hover & {
     filter: brightness(75%);
   }
@@ -119,7 +111,6 @@ class Image extends React.Component {
     // loop thru all img tags and set class NOT-HOVERED for imgs tht dont have id HOVERED
     const hovered = document.getElementsByClassName('HOVERED')[0];
     hovered.setAttribute('filter', 'brightness(75%)');
-    console.log(hovered);
     // css selector for everything but id hovered to lower brightness
   }
 
