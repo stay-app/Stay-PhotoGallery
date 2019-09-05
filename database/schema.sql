@@ -1,14 +1,17 @@
 -- psql -U postgres -d mydb -a -f "database/schema.sql"
-drop table if exists images, listings;
+DROP DATABASE IF EXISTS photogallery;
+DROP TABLE IF EXISTS images, listings;
+CREATE DATABASE IF NOT EXISTS photogallery;
+USE photogallery;
 
-create table images (
-  id serial primary key,
-  image_url varchar(500),
-  sequence_id integer,
-  caption varchar(200),
-  listing_id integer not null
+CREATE TABLE images (
+  id SERIAL PRIMARY KEY,
+  image_url VARCHAR(500),
+  sequence_id INTEGER,
+  caption VARCHAR(200),
+  listing_id INTEGER NOT NULL
 );
 
-create table listings (
-  id integer not null
+CREATE TABLE listings (
+  id INTEGER NOT NULL
 );

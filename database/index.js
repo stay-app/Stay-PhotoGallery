@@ -1,7 +1,10 @@
 const { Pool } = require('pg');
+const os = require('os');
+
+const user = os.userInfo().username;
 
 const pool = new Pool({
-  user: 'taehoonkim',
+  user: user,
   host: 'localhost',
   database: 'photogallery',
   password: null,
