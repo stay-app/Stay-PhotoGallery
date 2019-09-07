@@ -1,13 +1,6 @@
 import React from 'react';
 // import styled from 'styled-components';
 
-// to do
-// if selected last carousel item, hide right gradient
-// apply border to carousel item when it's clicked
-// apply brightness to carousel item unless it's selected or hovered
-// breakpoint to make carousel item 48px: width: 1200px
-// breakpoint to move carousel to bottom: width: 1128px
-
 const CarouselWrapper = styled.div`
   display: block;
   margin: 0;

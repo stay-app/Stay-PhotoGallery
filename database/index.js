@@ -1,21 +1,26 @@
-const { Pool } = require('pg');
-const os = require('os');
+const mysql = require('mysql2');
 
-const user = os.userInfo().username;
-
-const pool = new Pool({
-  user: user,
-  host: 'localhost',
+// docker
+const db = mysql.createConnection({
+  user: 'root',
+  password: 'docker',
+  host: 'database',
   database: 'photogallery',
-  password: null,
-  port: 5432,
 });
 
+// local dev
+// const db = mysql.createConnection({
+//   user: 'root',
+//   host: 'localhost',
+//   database: 'photogallery',
+// });
+
+db.connect();
+
 const getImagesForListingId = (listingId, cb) => {
-  pool.query(`SELECT * from images where listing_id=${listingId} order by sequence_id`, (err, res) => {
+  db.query(`SELECT * from images where listing_id=${listingId} order by sequence_id`, (err, res) => {
     if (err) cb(err);
     else cb(null, res);
-    // pool.end();
   });
 };
 

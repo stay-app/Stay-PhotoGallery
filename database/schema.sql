@@ -1,8 +1,8 @@
 -- psql -U postgres -d mydb -a -f "database/schema.sql"
-DROP DATABASE IF EXISTS photogallery;
-DROP TABLE IF EXISTS images, listings;
-CREATE DATABASE IF NOT EXISTS photogallery;
+-- DROP DATABASE IF EXISTS photogallery;
+-- CREATE DATABASE IF NOT EXISTS photogallery;
 USE photogallery;
+DROP TABLE IF EXISTS images, listings;
 
 CREATE TABLE images (
   id SERIAL PRIMARY KEY,

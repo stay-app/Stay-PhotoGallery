@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: path.resolve(__dirname, 'client/components/PhotoGallery.jsx'),
+  // entry: path.resolve(__dirname, 'client/index.jsx'),
   mode: 'development',
   output: {
     filename: 'bundle.js',

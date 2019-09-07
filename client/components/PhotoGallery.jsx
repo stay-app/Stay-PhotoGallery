@@ -29,8 +29,8 @@ class PhotoGallery extends React.Component {
     window.handleNextClick = this.handleNextClick.bind(this);
     window.handleCloseModal = this.handleCloseModal.bind(this);
     window.addEventListener('keydown', this.handleKeyShortcuts);
-    axios.get('/api/images/100')
-      .then((data) => this.setState({ listingData: data.data }))
+    axios.get('http://localhost:5000/api/images/100')
+      .then((data) => { this.setState({ listingData: data.data }) })
       .catch((err) => console.log(err));
   }
 
